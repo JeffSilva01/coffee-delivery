@@ -10,6 +10,13 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: 'var(--font-roboto)',
+        title: 'var(--font-ballo)',
+      },
+      borderRadius: {
+        card: '6px 36px',
+      },
+      gridTemplateColumns: {
+        cards: 'repeat(auto-fit, minmax(256px, 1fr))',
       },
       colors: {
         primary: {
@@ -19,21 +26,21 @@ const config: Config = {
         },
 
         secondary: {
-          300: '#F1E9C9',
+          300: '#EBE5F9',
           500: '#8047F8',
           700: '#4B2995',
         },
 
         base: {
-          100: '#FAFAFA',
-          200: '#F3F2F2',
-          300: '#EDEDED',
-          400: '#E6E5E5',
-          500: '#D7D5D5',
-          600: '#8D8686',
-          700: '#574F4D',
-          800: '#403937',
-          900: '#272221',
+          background: '#FAFAFA',
+          card: '#F3F2F2',
+          input: '#EDEDED',
+          button: '#E6E5E5',
+          hover: '#D7D5D5',
+          label: '#8D8686',
+          text: '#574F4D',
+          subtitle: '#403937',
+          title: '#272221',
         },
       },
     },

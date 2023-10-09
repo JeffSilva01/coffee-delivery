@@ -1,3 +1,4 @@
+import { Header } from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto, Baloo_2 as Baloo2 } from 'next/font/google'
@@ -26,7 +27,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${roboto.variable} ${ballo2.variable}`}>
-      <body>{children}</body>
+      <body>
+        <>
+          <Header />
+          {children}
+        </>
+      </body>
     </html>
   )
 }

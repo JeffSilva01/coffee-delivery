@@ -1,0 +1,4 @@
+GET https://us1.locationiq.com/v1/reverse.php?key=pk.41b9912f99bd0f6bba4d2c8bc37e02f6&lat=-3.7375523&lon=-38.6215081&format=json
+
+####
+GET https://brasilapi.com.br/api/cep/v2/61634-180
