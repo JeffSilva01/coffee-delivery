@@ -4,7 +4,7 @@ export async function GET(request: Request) {
   const lon = searchParams.get('lon')
 
   const response = await fetch(
-    `https://us1.locationiq.com/v1/reverse.php?key=pk.41b9912f99bd0f6bba4d2c8bc37e02f6&lat=${lat}&lon=${lon}&format=json`,
+    `https://us1.locationiq.com/v1/reverse.php?key=${process.env.NEXT_LOCATIONQ_API_KEY}&lat=${lat}&lon=${lon}&format=json`,
   )
 
   const data = await response.json()
