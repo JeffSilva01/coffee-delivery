@@ -1,8 +1,8 @@
 import { Card } from '@/components/Card'
-import { client } from '@/lib/apoloClient'
 import { GET_ALL_COFFEES } from '@/queries/getAllCoffee'
 import { Coffee, Package, ShoppingCart, Timer } from 'lucide-react'
 import Image from 'next/image'
+import { performRequest } from '@/lib/datocms'
 
 type dataGetAllCoffees = {
   allCoffees: {
@@ -23,9 +23,9 @@ type dataGetAllCoffees = {
 }
 
 export default async function Home() {
-  const {
-    data: { allCoffees },
-  } = await client.query<dataGetAllCoffees>({ query: GET_ALL_COFFEES })
+  const { allCoffees }: dataGetAllCoffees = await performRequest({
+    query: GET_ALL_COFFEES,
+  })
 
   return (
     <>

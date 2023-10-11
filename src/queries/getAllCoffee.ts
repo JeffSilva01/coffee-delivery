@@ -1,7 +1,5 @@
-import { gql } from '@apollo/client'
-
-export const GET_ALL_COFFEES = gql`
-  query {
+export const GET_ALL_COFFEES = `
+  {
     allCoffees {
       id
       title
