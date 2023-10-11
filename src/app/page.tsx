@@ -1,8 +1,32 @@
 import { Card } from '@/components/Card'
+import { client } from '@/lib/apoloClient'
+import { GET_ALL_COFFEES } from '@/queries/getAllCoffee'
 import { Coffee, Package, ShoppingCart, Timer } from 'lucide-react'
 import Image from 'next/image'
 
-export default function Home() {
+type dataGetAllCoffees = {
+  allCoffees: {
+    id: string
+    title: string
+    description: string
+    value: number
+    image: {
+      url: string
+      width: number
+      height: number
+    }
+    tag: {
+      id: string
+      tag: string
+    }[]
+  }[]
+}
+
+export default async function Home() {
+  const {
+    data: { allCoffees },
+  } = await client.query<dataGetAllCoffees>({ query: GET_ALL_COFFEES })
+
   return (
     <>
       <section className="flex h-[544px] w-full items-center">
@@ -57,25 +81,10 @@ export default function Home() {
       </section>
       <section className="container mx-auto">
         <h2 className="font-title text-3xl text-base-title">Nossos cafés</h2>
-        <div className="grid-cols-cards mt-14 grid gap-8 border">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+        <div className="mt-14 grid grid-cols-cards gap-8 border">
+          {allCoffees.map((coffee) => (
+            <Card key={coffee.id} coffee={coffee} />
+          ))}
         </div>
       </section>
     </>

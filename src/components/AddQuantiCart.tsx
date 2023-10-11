@@ -12,6 +12,7 @@ export function AddQuantiCart() {
         </button>
         <input
           value="01"
+          readOnly
           className="h-5 w-5 bg-transparent text-center"
           type="text"
         />
