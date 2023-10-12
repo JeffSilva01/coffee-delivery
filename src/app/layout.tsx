@@ -2,6 +2,7 @@ import { Header } from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto, Baloo_2 as Baloo2 } from 'next/font/google'
+import { CartContextProvider } from '@/context/CartContext'
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -29,8 +30,10 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${roboto.variable} ${ballo2.variable}`}>
       <body>
         <>
-          <Header />
-          {children}
+          <CartContextProvider>
+            <Header />
+            {children}
+          </CartContextProvider>
         </>
       </body>
     </html>

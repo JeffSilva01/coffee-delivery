@@ -1,4 +1,12 @@
-import { ReactNode, createContext, useEffect, useState } from 'react'
+'use client'
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
+
 type Coffee = {
   id: string
   title: string
@@ -12,7 +20,7 @@ type Coffee = {
 }
 
 type CartContextData = {
-  coffees: Coffee[]
+  coffees: { [key: string]: Coffee }
   addCoffee: (coffee: Coffee) => void
   removeCoffee: (id: string) => void
 }
@@ -20,7 +28,8 @@ type CartContextData = {
 const CartContext = createContext({} as CartContextData)
 
 export function CartContextProvider({ children }: { children: ReactNode }) {
-  const [coffees, setCoffees] = useState<Coffee[]>([])
+  const [coffees, setCoffees] = useState<{ [key: string]: Coffee }>({})
+
   const [cartIsOpen, setCartIsOpen] = useState(false)
 
   useEffect(() => {
@@ -28,12 +37,15 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
   }, [cartIsOpen])
 
   function addCoffee(coffee: Coffee) {
-    setCoffees([...coffees, coffee])
+    setCoffees((state) => ({ ...state, [coffee.id]: coffee }))
     setCartIsOpen(true)
   }
 
   function removeCoffee(coffeeId: string) {
-    setCoffees(coffees.filter((coffee) => coffee.id !== coffeeId))
+    setCoffees((state) => {
+      delete state[coffeeId]
+      return state
+    })
   }
 
   return (
@@ -41,4 +53,10 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
       {children}
     </CartContext.Provider>
   )
+}
+
+export function useCartContext() {
+  const context = useContext(CartContext)
+
+  return context
 }

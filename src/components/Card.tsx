@@ -11,6 +11,7 @@ type cardProps = {
       width: number
       height: number
     }
+    value: number
     tag: {
       id: string
       tag: string
@@ -43,7 +44,7 @@ export function Card({ coffee }: cardProps) {
       <p className="mt-2 text-center text-sm text-base-label">
         {coffee.description}
       </p>
-      <AddQuantiCart />
+      <AddQuantiCart coffee={coffee} />
     </div>
   )
 }
