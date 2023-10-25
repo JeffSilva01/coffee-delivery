@@ -20,7 +20,7 @@ type Coffee = {
 }
 
 type CartContextData = {
-  coffees: { [key: string]: Coffee }
+  coffees: Coffee[]
   addCoffee: (coffee: Coffee) => void
   removeCoffee: (id: string) => void
 }
@@ -28,23 +28,15 @@ type CartContextData = {
 const CartContext = createContext({} as CartContextData)
 
 export function CartContextProvider({ children }: { children: ReactNode }) {
-  const [coffees, setCoffees] = useState<{ [key: string]: Coffee }>({})
-
-  const [cartIsOpen, setCartIsOpen] = useState(false)
-
-  useEffect(() => {
-    setTimeout(() => setCartIsOpen(false), 3000)
-  }, [cartIsOpen])
+  const [coffees, setCoffees] = useState<Coffee[]>([])
 
   function addCoffee(coffee: Coffee) {
-    setCoffees((state) => ({ ...state, [coffee.id]: coffee }))
-    setCartIsOpen(true)
+    setCoffees((state) => [...state, coffee])
   }
 
   function removeCoffee(coffeeId: string) {
     setCoffees((state) => {
-      delete state[coffeeId]
-      return state
+      return state.filter((coffee) => coffee.id !== coffeeId)
     })
   }
 

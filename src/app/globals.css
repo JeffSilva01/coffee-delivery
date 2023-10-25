@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header {
+  animation-name: header;
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
+  animation-direction: alternate;
+  animation-timeline: scroll(block nearest);
+}
+
+@keyframes header {
+  0% {
+    background: transparent;
+  }
+  15%,
+  100% {
+    background: #fff;
+  }
+}
