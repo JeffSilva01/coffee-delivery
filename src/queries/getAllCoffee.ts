@@ -13,7 +13,7 @@ export const GET_ALL_COFFEES = `
         width
         height
       }
-      value
+      price
     }
   }
 `

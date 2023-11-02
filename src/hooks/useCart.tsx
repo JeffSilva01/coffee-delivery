@@ -1,22 +1,12 @@
 'use client'
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
 
 type Coffee = {
   id: string
   title: string
-  image: {
-    url: string
-    width: number
-    height: number
-  }
-  value: number
-  quantity: number
+  imageURL: string
+  price: number
+  amount: number
 }
 
 type CartContextData = {
@@ -31,7 +21,17 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
   const [coffees, setCoffees] = useState<Coffee[]>([])
 
   function addCoffee(coffee: Coffee) {
-    setCoffees((state) => [...state, coffee])
+    setCoffees((state) => {
+      const productExists = state.findIndex((item) => item.id === coffee.id)
+
+      if (productExists < 0) {
+        return [...state, coffee]
+      }
+
+      state.splice(productExists, 1, coffee)
+
+      return state
+    })
   }
 
   function removeCoffee(coffeeId: string) {
@@ -47,7 +47,7 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
   )
 }
 
-export function useCartContext() {
+export function useCart() {
   const context = useContext(CartContext)
 
   return context

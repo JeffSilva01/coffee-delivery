@@ -1,15 +1,15 @@
-import { Card } from '@/components/Card'
 import { GET_ALL_COFFEES } from '@/queries/getAllCoffee'
 import { Coffee, Package, ShoppingCart, Timer } from 'lucide-react'
 import Image from 'next/image'
 import { performRequest } from '@/lib/datocms'
+import { ProductCard } from '@/components/ProductCard'
 
-type dataGetAllCoffees = {
+type DataGetAllCoffees = {
   allCoffees: {
     id: string
     title: string
     description: string
-    value: number
+    price: number
     image: {
       url: string
       width: number
@@ -23,9 +23,11 @@ type dataGetAllCoffees = {
 }
 
 export default async function Home() {
-  const { allCoffees }: dataGetAllCoffees = await performRequest({
+  const { allCoffees }: DataGetAllCoffees = await performRequest({
     query: GET_ALL_COFFEES,
   })
+
+  console.log({ allCoffees })
 
   return (
     <>
@@ -81,9 +83,9 @@ export default async function Home() {
       </section>
       <section className="container mx-auto">
         <h2 className="font-title text-3xl text-base-title">Nossos cafés</h2>
-        <div className="mt-14 grid grid-cols-cards gap-8 border">
+        <div className="mt-14 grid grid-cols-cards gap-8">
           {allCoffees.map((coffee) => (
-            <Card key={coffee.id} coffee={coffee} />
+            <ProductCard key={coffee.id} coffee={coffee} />
           ))}
         </div>
       </section>

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { AddQuantiCart } from './AddQuantiCart'
 
-type cardProps = {
+type ProductCardProps = {
   coffee: {
     id: string
     title: string
@@ -11,7 +11,7 @@ type cardProps = {
       width: number
       height: number
     }
-    value: number
+    price: number
     tag: {
       id: string
       tag: string
@@ -19,7 +19,7 @@ type cardProps = {
   }
 }
 
-export function Card({ coffee }: cardProps) {
+export function ProductCard({ coffee }: ProductCardProps) {
   return (
     <div className="flex flex-col items-center rounded-card bg-base-card p-5 pt-0">
       <Image

@@ -1,10 +1,10 @@
 'use client'
-import { useCartContext } from '@/context/CartContext'
+import { useCart } from '@/hooks/useCart'
 import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 
 export function Cart() {
-  const { coffees } = useCartContext()
+  const { coffees } = useCart()
 
   return (
     <Link

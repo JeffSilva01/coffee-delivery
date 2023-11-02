@@ -2,7 +2,7 @@ import { Header } from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto, Baloo_2 as Baloo2 } from 'next/font/google'
-import { CartContextProvider } from '@/context/CartContext'
+import { CartContextProvider } from '@/hooks/useCart'
 
 const roboto = Roboto({
   subsets: ['latin'],

@@ -1,11 +1,9 @@
-export default function Checkout() {
+export default function Page() {
   return (
-    <section className="flex h-screen w-screen items-center justify-center">
-      <div>
-        <div>
-          <h2>Complete seu pedido</h2>
-        </div>
+    <div>
+      <div className="h-full mx-auto w-full">
+
       </div>
-    </section>
+    </div>
   )
 }
