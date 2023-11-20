@@ -6,7 +6,9 @@ import { useCart } from '@/hooks/useCart'
 import { DollarSign, MapPin } from 'lucide-react'
 
 export default function Page() {
-  const { coffees } = useCart()
+  const { coffees, totalValue } = useCart()
+
+  const deliveryValue = coffees.length === 0 ? 0 : 3.5
 
   return (
     <div className="container mx-auto flex gap-8 pt-24">
@@ -74,18 +76,36 @@ export default function Page() {
           <div className="my-6 space-y-3">
             <div className="flex items-center justify-between">
               <p>Totoal de itens</p>
-              <span>R$ 29,70</span>
+              <span>
+                {totalValue.toLocaleString('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </span>
             </div>
             <div className="flex items-center justify-between">
               <p>Entrega</p>
-              <span>R$ 3,50</span>
+              <span>
+                {deliveryValue.toLocaleString('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </span>
             </div>
             <div className="flex items-center justify-between text-xl font-bold text-base-subtitle">
               <p>Total</p>
-              <span>R$ 33,20</span>
+              <span>
+                {(totalValue + deliveryValue).toLocaleString('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </span>
             </div>
           </div>
-          <button className="w-full rounded bg-primary-500 py-3 text-center text-sm font-bold text-white">
+          <button
+            disabled={coffees.length === 0}
+            className="w-full rounded bg-primary-500 py-3 text-center text-sm font-bold text-white disabled:bg-base-button disabled:text-base-label"
+          >
             Confirmar pedido
           </button>
         </div>
