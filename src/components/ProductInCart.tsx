@@ -1,3 +1,5 @@
+'use client'
+import { useCart } from '@/hooks/useCart'
 import { Minus, Plus, Trash } from 'lucide-react'
 import Image from 'next/image'
 
@@ -12,21 +14,26 @@ type ProductInCartProps = {
 }
 
 export function ProductInCart({ coffee }: ProductInCartProps) {
+  const { removeCoffee, incrementedAmount, decrementedAmount } = useCart()
+
   return (
     <div className="flex w-full items-center gap-5 border-b-2 py-6">
       <Image src={coffee.imageURL} width={64} height={64} alt="" />
       <div className="grid grid-cols-2 gap-2">
         <span className="col-span-2 to-base-subtitle">{coffee.title}</span>
         <div className="flex items-center justify-around gap-1 rounded-md bg-base-button p-2">
-          <button>
+          <button onClick={() => decrementedAmount(coffee.id)}>
             <Minus className="text-secondary-500" />
           </button>
           <span className="to-base-title">{coffee.amount}</span>
-          <button>
+          <button onClick={() => incrementedAmount(coffee.id)}>
             <Plus className="text-secondary-500" />
           </button>
         </div>
-        <button className="flex items-center gap-1 rounded-md bg-base-button p-2 text-base-text">
+        <button
+          onClick={() => removeCoffee(coffee.id)}
+          className="flex items-center gap-1 rounded-md bg-base-button p-2 text-base-text"
+        >
           <Trash className="text-secondary-500" /> Remover
         </button>
       </div>
