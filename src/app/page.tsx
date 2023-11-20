@@ -27,8 +27,6 @@ export default async function Home() {
     query: GET_ALL_COFFEES,
   })
 
-  console.log({ allCoffees })
-
   return (
     <>
       <section className="flex h-[544px] w-full items-center">
