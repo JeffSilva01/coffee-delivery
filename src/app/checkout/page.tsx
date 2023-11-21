@@ -67,7 +67,7 @@ export default function Page() {
         <p className="font-title text-lg font-bold text-base-subtitle">
           Complete seu pedido
         </p>
-        <div className="bg-base-card p-10">
+        <div className="rounded-md rounded-bl-[44px] rounded-tr-[44px] bg-base-card p-10">
           <div className="flex flex-col items-center overflow-auto">
             {coffees.map((coffee) => (
               <ProductInCart key={coffee.id} coffee={coffee} />
